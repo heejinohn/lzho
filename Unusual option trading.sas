@@ -1,11 +1,3 @@
-%macro signon_cloud;
-    %let wrds=wrds-cloud.wharton.upenn.edu 4016;
-    options comamid=TCP remote=WRDS;
-    signon username=lzhangg pw="268746Zl!";
-%mend signon_cloud;
-
-%signon_cloud;
-
 rsubmit;
 
 options dlcreatedir;  
