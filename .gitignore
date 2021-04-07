@@ -1,3 +1,4 @@
 *.zip
 *.sas7bdat
 *.csv
+*.gzip
