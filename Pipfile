@@ -4,27 +4,12 @@ url = "https://pypi.org/simple"
 verify_ssl = true
 
 [dev-packages]
+jupyter = "*"
+pynvim = "*"
 neovim = "*"
-nbdime = "*"
-autopep8 = "*"
-pyflakes = "*"
-pylint = "*"
-isort = "*"
 pandoc = "*"
-pyvim = "*"
 
 [packages]
-pandas = "*"
-numpy = "*"
-matplotlib = "*"
-seaborn = "*"
-jupyter = "*"
-rpy2 = "*"
-scipy = "*"
-jupyter-contrib-nbextensions = "*"
-jupyter-nbextensions-configurator = "*"
-kaggle = "*"
-jupyterlab = "*"
 
 [requires]
-python_version = "3.8"
+python_version = "3.9"
