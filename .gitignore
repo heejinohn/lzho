@@ -3,3 +3,4 @@
 *.csv
 *.lock
 *.gzip
+.ipynb_checkpoints/*
