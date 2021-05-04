@@ -1,0 +1,101 @@
+---
+title: "Research design"
+author: "Ling Zhang"
+date: "3/29/2021"
+output: 
+  html_document:
+    code_folding: show
+    toc: yes
+    toc_float: yes
+  word_document:
+    toc: yes
+    toc_depth: '4'
+  pdf_document:
+    df_print: kable
+    fig_caption: yes
+    fig_height: 6
+    fig_width: 7
+    highlight: tango
+    toc: yes
+    toc_depth: 4
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+# Event study
+
+We can look at the five-day cumulative abnormal returns around the abnormal option trading days. 
+
+$CAR[-2,2]_i=\beta_0+\beta_1CAR[-5,-3]_i+\beta_2Callvolume_i+\beta_3Putvolume_i+\beta_5Stockvolume_i+\epsilon$
+
+Callvolume will be the log value of trading volume.
+
+CAR[-5,-3] is the pre price run-up. 
+
+
+# Price informativeness measure
+
+## Bai et al. 2016 (regress future earnings on current market prices)
+
+$\frac{E_{i,t+h}}{A_{i,t}}=a_{t,h}+b_{t,h}log(\frac{M_(i,t)}{A_{i,t}})+c_{t,h}(\frac{E_{i,t}}{A_{i,t}})+d_{t,h}I_{i,t}+\epsilon$
+
+i-firm index
+
+t=1960~2014
+
+h=1,...,5
+
+Price informativeness=$b_{t,h}\times\sigma_t(log(\frac{M}{A}))$
+
+### Proposed model
+
+$\frac{E_{i,t+h}}{A_{i,t}}=a+b_{1,h}log(\frac{M_(i,t)}{A_{i,t}})+b_{2,h}log(\frac{M_(i,t)}{A_{i,t}})\times Callvolume+b_{3,h}log(\frac{M_(i,t)}{A_{i,t}})\times Putvolume+ b_{4,h}X_{i,t}+b_{5,h}log(\frac{M_(i,t)}{A_{i,t}})\times X_{i,t}+\epsilon$
+
+The variables of interest will be $b_{2,h}$ and $b_{3,h}$, which measure average price informativeness conditional on call and put option trading volume. 
+
+$X_{i,t}$-control variables, including E/A, log(asset), Leverage
+
+OR
+
+we calculate this price informativeness measure for firms sorted by their option trading volume. We sort firms into five quintiles based on the trading volume and then compare difference in average price informativeness for firms of high versus low option trading volume. 
+
+
+### Difference-in-differences 
+
+#### The date on which option trading is available on Robinhood
+
+Treatment group: Options available on Robinhood
+
+Control group: Options not available on Robinhood
+
+
+## Price nonsynchronicity
+
+It can be estimated by 1-R^2, where R^2 is generated from the following regression:
+
+$R_{i,j,t}=\beta_{i,0}+\beta_{i,m}R_{m,t}+\beta_{i,j}R_{j,t}+\epsilon_{i,t}$
+
+$R_{i,j,t}$-return of firm i in industry j at time t
+
+$R_{m,t}$-the market return at time t
+
+$R_{j,t}$-the return of industry j at time t
+
+
+
+# Management learning
+
+$Forecast\ Revision=\beta_1Return+\beta_2Return \times PI+\beta_3Analyst\ revision+\beta_4Analyst\ revision \times PI+\beta_5Quaterly\ error+\beta_6Quaterly\ error \times PI+\beta_7Control\ variables+\epsilon$
+
+Return-buy and hold return from the initial forecast to forecast revision date
+
+Analyst revision and management's quarterly forecast errors: Control for public information about future earnings
+
+Control variables: Size, Coverage, BTM, Horizon(the number of days between revision date and the estimate period end date),Gap (the number of days between the initial forecast and forecast revision date)
+
+
+
+
+
