@@ -16,13 +16,16 @@ save ~/Downloads/merge_nodup.dta, replace
 // isid ticid date
 
 //// Run granger by ticker
+tempfile mat
+save `mat', emptyok
 use ~/Downloads/merge_nodup.dta, clear
-xtset ticid date
-matrix G = J(1,3,.)
-matrix colnames G = "chi2" "df" "p"
+keep in f/818
 qui levelsof tic_q
 foreach val in `r(levels)' {
-    capture noisily var activity score posts if tic_q == `"`val'"'
+    use ~/Downloads/merge_nodup.dta, clear
+    xtset ticid date
+    di `"`val'"'
+    capture noisily qui var activity score posts if tic_q == `"`val'"'
     if _rc == 0 {
         qui vargranger
         matrix g = r(gstats)
@@ -36,19 +39,23 @@ foreach val in `r(levels)' {
             local new "`new' `val'_`w'"
         }
         matrix roweq g = `new'
-        matrix  G = (G \ g)
+        drop _all
+        svmat g, names(col)
+        gen roweq = ""
+        gen lags = ""
+        local eq: roweq(g)
+        local lags: rownames(g)
+        forval i = 1/`: rowsof(g)' {
+            replace roweq = "`: word `i' of `eq''" in `i'
+            replace lags = "`: word `i' of `lags''" in `i'
+        }
+        append using `mat'
+        save `"`mat'"', replace
         local new
     }
 }
-drop _all
-svmat G, names(col)
-gen roweq = ""
-gen tic = ""
-gen lead = ""
-gen lags = ""
-local eq: roweq(G)
-local lags: rownames(G)
-forval i = 1/`: rowsof(G)' {
-    replace roweq = "`: word `i' of `eq''" in `i'
-    replace lags = "`: word `i' of `lags''" in `i'
-}
+save test, replace
+use test
+drop if missing(chi2)
+keep chi2-lags
+save test, replace
