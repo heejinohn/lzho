@@ -58,4 +58,8 @@ save test, replace
 use test
 drop if missing(chi2)
 keep chi2-lags
-save test, replace
+gen ticker = substr(roweq,1,strpos(roweq,"_")-1)
+gen lead = substr(roweq,strrpos(roweq,"_"),.)
+gen yearq = real(substr(roweq,strpos(roweq,"_")+1),3)
+format yearq %tq
+save, replace
