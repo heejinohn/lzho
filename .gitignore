@@ -6,4 +6,3 @@
 *.pdf
 .ipynb_checkpoints/*
 pandoc-scholar/*
-!pandoc-scholar/draft/opz_2022.md
