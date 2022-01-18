@@ -4,11 +4,10 @@ url = "https://pypi.org/simple"
 verify_ssl = true
 
 [dev-packages]
+jupyter = "*"
+pynvim = "*"
 neovim = "*"
-nbdime = "*"
-autopep8 = "*"
 pandoc = "*"
-pyvim = "*"
 
 [packages]
 pandas = "*"
@@ -22,4 +21,4 @@ pandasql = "*"
 matplotlib = "*"
 
 [requires]
-python_version = "3.9"
+python_version = "3.10"
