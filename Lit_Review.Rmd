@@ -1,0 +1,226 @@
+---
+title: "Direct Retail Investment and Price Informativeness"
+author: 
+  - Heejin Ohn^[University of Oklahoma, heejin-ohn@ou.edu]
+  - Richard Price^[University of Oklahoma, richard.price@ou.edu]
+  - Ling Zhang^[University of Oklahoma, ling.zhang@ou.edu]
+date: "`r Sys.Date()`"
+output: 
+  html_document:
+    code_folding: show
+    csl: biomed-central.csl
+    df_print: paged
+    fig_caption: yes
+    fig_height: 6
+    fig_width: 7
+    number_sections: yes
+    theme: journal
+    toc: yes
+    toc_float: yes
+  word_document:
+    toc: yes
+    toc_depth: '4'
+  pdf_document:
+    df_print: paged
+    fig_caption: yes
+    fig_height: 6
+    fig_width: 7
+    highlight: tango
+    toc: yes
+    toc_depth: 4
+bibliography: project.bib
+abstract: We investigate stock price informativeness during periods when firms grab attention from retail investors, in particular, who invest directly in firm stocks. We do so using an archival setting were direct investments of retail investors immediately precede or trail public discussions in investment-related social media forum. While the average price informativeness around changes in retail investment *[discuss the average result here.]*, the effect varies significantly by whether the investments preceded or trailed social media discussions that gathered retail investor attention. *[**maybe** add cross-sectional result here.] Our study adds to the discussion on how market participation of less sophisticated investors affects the informativeness of equity market prices.
+
+---
+
+
+---
+
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+# Literature Review
+
+1. Paper
+2. RQ
+3. Robintrack data or WSB?
+4. Other data sources
+5. Retail investor description
+6. Design
+7. Exogenous shock?
+8. How is ours incremental?
+
+## Eaton et al. 2021
+
+1. @Eaton2021
+
+2. They use brokerage platform outages to measure the impact of different retail investor clienteles on market quality?
+
+3. Robinhood and WallStreetBets
+
+4. They use outage data from DownDetector.com; also use @Boehmer2021 algorithm to differentiate retail investors from other investors
+
+5. Robinhood users and investors at traditional retail brokers
+
+6. First test whether retail order flow predict future returns (informativeness).
+
+$$Ret_{i,[d,d+\tau]}=\alpha+\beta_1RH_{i,d-1}+\beta_2AggRetailOIB_{i,d-1}+\gamma'Controls_{i,d-1}+\epsilon_{i,[d,d+\tau]}$$
+
+
+Then they analyze the determinants of trading activity for both Robinhood users and traditional retail investors.
+
+$$Y_{i,t}=\alpha+\sum_{q=2}^{5}\beta_qWSB_{i,t-1}+\delta'X_{i,t-1,rets}+\lambda'X_{i,t-1,rets}+\gamma_1Retail_{i,t-1}+\gamma_2RH_{i,t-1}+\epsilon_{i,t}$$
+
+
+Next they explore whether outages affect trading activity:
+
+$$Trd_{i,t}=\alpha+\beta_1RetTrd_{i,d-1}+\beta_2Outage_t+\beta_3RetTrd_{i,d-1}\times Outage_t+\gamma_i+\delta_d+\epsilon_{i,t}$$
+
+
+7. Brokerage platform outage
+
+
+8. They test the informativeness by examining whether Robinhood investor trading can positively predict future returns, but they do not find any evidence, then they explore the effect of Robinhood trading on trading volume, trading intensity, market liquidity and price volatility. Our study focuses on the lead-lag relation between retail investor attention and trading activities. 
+
+
+
+## Hu et al. 2021
+
+1. @Hu2021
+
+2. They examine the effect of social media on price discovery and how different types of investors behave.
+
+3. WallStreetbets (traffic volume, discussion tone, dispersion of opinions and connectedness of submitters)
+
+4. Short-seller activity is measured following Boehmer, Jones and Zhang (2008) (@Boehmer2008);CBOE
+
+5. Investor on Reddit
+
+6. first, they examine whether Reddit variables can predict returns:
+
+$$ret_{i,t+d}=b_0+b_1RW_{i,t}+b_2controls_{it}+dayFE+\epsilon_{i,t+d}$$
+
+Next,they test whether retail order floe's predictive power change with social media variables?
+
+$$ret_{i,t+1}=b_0+b_1RW_{i,t}+b_2mroib_{it}+b_3RW_{it}\times mroib_{it}+b_4controls_{it}+dayFE+\epsilon_{i,t+1}$$
+
+
+Then they repeat the previous two tests with short-selling.
+
+Finally, they examine whether social media activity's predictive power is related to the contents of submissions, whether social media activity affects the cost of shorting, and how relief checks are related to social media activity, retail flows and shorting flows. 
+
+
+8. Their primary emphasis is on how Reddit posts can predict future returns, and how they affect short-selling activities. Again, they do not touch the area of lead-lag relation.
+
+
+## Welch 2020
+
+1. @Welch2020
+
+2. He analyzes Robinhood tradings during the pandemic.
+
+3. Robinhood
+
+4. No other data
+
+5. Robinhood users
+
+6. The analyses are primarily descriptive.
+
+7. No shock
+
+8. The author primarily examines Robinhood investor trading during the pandemic downturn, and find investors add funds aggressively after large upswings. The analyses are mostly descriptive, showing some tickers' extreme 1-day increases in holdings, accelerated Robinhood investing during COVID crisis, underinvestment in biggest 500 stocks, etc. It does not really touch the price informativeness area. 
+
+
+## Ozik et al. 2021
+
+1. @Ozik2021
+
+2. They examine the effect of retail investors on stock liquidity during the COVID-19 pandemic lockdown.
+
+3. Robinhood
+
+4. MKT MediaStats (media coverage);TAQ
+
+5. Robinhood users
+
+6. They first examine whether retail investors respond to COVID-19-related media coverage during lockdown.
+
+$$RETAIL_{i,t}=\alpha_i+\beta_1\times COVERAGE_{i,t}+\beta_2\times LOCKDOWN_t+\beta_3\times COVERAGE_{i,t}\times LOCKDOWN_t+\gamma\times CONTROLS+\epsilon_{i,t}$$
+
+Then they study the effect of retail trading on stock liquidity:
+
+$$ SPREAD_{i,t}=\alpha_i+\beta_1\times RETAIL_{i,t}+\beta_2\times LOCKDOWN_t+\beta_3\times RETAIL_{i,t}\times LOCKDOWN_t+\gamma\times CONTROLS+\epsilon_{i,t}$$
+
+Next, they use the staggered implementation of the stay-at-home advisory to test for causal relationship.
+
+$$SPREAD_{i,t}=\alpha_i+\beta_1\times RETAIL_{i,t}\times TREAT_i\times POST_t+\beta_2\times RETAIL_{i,t}\times COVERAGE_{i,t}\times TREAT_i\times POST_t+\beta_3\times X_{i,t}+\epsilon_{i,t}$$
+
+
+7. They use the staggered implementation of the stay-at-home advisory across US states.
+
+8. This paper focuses exclusively on the effect of retail trading on stock liquidity, which is proxied by quoted or effective spread. Also, because Barber and Odean (2008) suggests that retail investors tend to trade attention-grabbing stocks, the authors incorporate media coverage variable. It doesn't really address whether retail trading activity is informative or not. 
+
+
+## Van der Beck and Jaunin 2021
+
+1. @Van2021
+
+2. They seek to quantify the impact of retail traders' demand on the US equity market within a structual model of asset demand.
+
+3. Robinhood
+
+4. SEC 13F filings
+
+5. Robinhood users
+
+6. They first regress quarterly log returns on institutional and Robinhood demand:
+
+$$r_t(n)=b_{0,t}+b_{1,t}\Delta_{t}^{IO}(n)+b_{2,t}\Delta_{t}^{RH}(n)+b_{3,t}X_{t-1}(n)+\epsilon_t(n)$$
+
+
+Then they estimate a demand system used in Koijen and Yogo (2019) (@Koijen2019) to quantify the impact of retail investment boom. Therefore, they are able to show the causal effect of Robinhood demand on prices. 
+
+7. They use market clearing condition in three counterfactual experiments.
+
+8. This paper focuses on investors' demand. They show that most of institutional investors have inelastic demand, and this is why retail investors have a substantial impact on prices. Again, Robinhood traders provide liquidity to the stock market in Q1 of 2020 and amplified the recovery in second quarter.
+
+
+## Bradley et al. 2021
+
+1. @Bradley2021
+
+2. The market consequences of due diligence (DD) reports on WallStreetbets.
+
+3. WSB
+
+4. Compustat; CRSP; Bloomberg; TAQ; IBES
+
+5. large retail investors (as proxied by volume-based measures of retail order imbalance); small retail investors (as proxied by trade-based 
+measures of retail order imbalance).
+
+6. They examine whether DD report recommendations forecast future stock returns:
+
+$$R_{it+1,t+x}=\beta_1Net DD_{it}+\beta_1Net DD\times 2021_{it}+Controls_{it}+Day_t+\epsilon_{it}$$
+
+Then they examine whether return predictability results concentrate in DD reports that coincide with major corporate events or not. They partition NetDD into Net DD processing and Net DD Production. 
+
+Then they investigate how DD report affects investor order imbalances:
+
+$$OIB_{it}=\beta_1Net DD_{it-1,t}+\beta_2Net DD_{it-1,t}\times 2021+Controls_{it}+Day_t+\epsilon_{it}$$
+
+Next they examine the informativeness of order imbalances following WSB:
+
+$$Ret_{it+1,t+x}=\beta_1OIB_{it}+\beta_2OIB_{it}\times 2021+\beta_3OIB_{it}\times DD_{it-1,t}+\beta_4OIB\times 2021\times DD_{it-1,t}+Controls_{it}+Day_t+\epsilon_{it}$$
+
+7. No shock
+
+8. This paper examines the investment value of WSB due-diligence (DD) reports, especially after the GME short squeeze event. It shows that informativeness of WSB research declined in the post-GME period, so retail investors should be cautious when using the WSB research for their investments. In our study, we focus on WSB daily discussion board, and we use data from discussion board to capture retail investor attention, and explore the relation between attention and Robinhood trading, not the value of WSB research.
+
+
+# References
+
+
+
