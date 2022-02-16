@@ -2,4 +2,5 @@
 # Should usually be overwritten or configured via an environment variable.
 ARTICLE_FILE=opz_2022.md
 OUTFILE_PREFIX=opz_2022
+DEFAULT_EXTENSIONS    ?= pdf 
 include $(PANDOC_SCHOLAR_PATH)/Makefile
