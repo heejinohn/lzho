@@ -1,0 +1,25 @@
+[[source]]
+name = "pypi"
+url = "https://pypi.org/simple"
+verify_ssl = true
+
+[dev-packages]
+neovim = "*"
+nbdime = "*"
+autopep8 = "*"
+pandoc = "*"
+pyvim = "*"
+
+[packages]
+pandas = "*"
+numpy = "*"
+jupyter = "*"
+rpy2 = "*"
+wrds = "*"
+pandas-profiling = "*"
+scipy = "*"
+pandasql = "*"
+matplotlib = "*"
+
+[requires]
+python_version = "3.9"

@@ -1,3 +1,9 @@
 *.zip
 *.sas7bdat
 *.csv
+*.lock
+*.gzip
+*.pdf
+.ipynb_checkpoints/*
+pandoc-scholar/*
+*.json
